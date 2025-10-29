@@ -152,3 +152,111 @@ nav{ flex:1 1 auto; display:flex; justify-content:center; }
   .grid-nodos{ grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 520px){ .grid-nodos{ grid-template-columns: 1fr; } }
+
+/* Tablet/phone ≤ 720px: compacta todo y evita overflow */
+@media (max-width: 720px){
+
+  /* Contenedor general */
+  .indice-layout{
+    width: calc(100vw - 24px);
+    padding: 12px 0 20px;
+    gap: 16px;
+    grid-template-columns: 1fr;   /* apila aside arriba y grilla abajo */
+  }
+
+  /* Header más ceñido, manteniendo el look */
+  header{width: 150%;}
+  .logo_direca img{ width: 56px; }
+  .logo img{ width: clamp(140px, 38vw, 200px); }
+
+  /* Navegación: comprime y permite varias filas si hace falta */
+  .nav-links{
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav-links a{
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+
+  /* Dropdown: que no se salga de la pantalla */
+  .dropdown-menu{
+    left: 80%;
+    transform: translate(-50%, 0);
+    min-width: 0;
+    width: min(92vw, 280px);
+    top: calc(100% + 8px);
+  }
+
+  /* Columna lateral (aside) */
+  .aside-col{
+    position: static;        /* quita sticky en móvil */
+    padding: 12px;
+    gap: 12px;
+    border-radius: 14px;
+    width: 150%;
+  }
+  .aside-box{
+    min-height: 156px;
+    padding: 14px 10px;
+  }
+  .aside-box.grande{ min-height: 168px; }
+  .aside-title{ font-size: 14px; }
+  .aside-icon{ width: 56px; height: 56px; margin-top: 6px; }
+
+  /* Grilla de nodos */
+  .grid-nodos{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 150%;
+  }
+  .nodo{
+    min-height: 120px;
+    padding: 16px;
+    font-size: clamp(13px, 3.2vw, 15px);
+    border-radius: 12px;
+    touch-action: manipulation;          /* mejor respuesta al tap */
+  }
+  .nodo:active{ transform: translateY(0) scale(.99); }
+  .nodo:focus-visible{
+    outline: 2px solid rgba(255,255,255,.35);
+    outline-offset: 2px;
+  }
+}
+
+/* Phone ≤ 520px: aún más compacto, 1 columna */
+@media (max-width: 520px){
+
+  header{ padding: 8px 14px; }
+  .logo_direca img{ width: 50px; }
+  .logo img{ width: clamp(128px, 42vw, 180px); }
+
+  .nav-links{ gap: 10px; }
+  .nav-links a{ padding: 6px 8px; font-size: 12.5px; }
+
+  .indice-layout{
+    width: calc(100vw - 16px);
+    gap: 12px;
+  }
+
+  .aside-col{ padding: 10px; gap: 10px; }
+  .aside-box{ min-height: 140px; }
+  .aside-box.grande{ min-height: 150px; }
+  .aside-icon{ width: 48px; height: 48px; }
+
+  .grid-nodos{
+    grid-template-columns: 1fr;  /* una sola columna */
+    gap: 12px;
+  }
+  .nodo{
+    min-height: 110px;
+    padding: 14px;
+    font-size: clamp(12px, 4vw, 14px);
+  }
+
+  /* Asegura que los menús flotantes no rompan el layout */
+  .dropdown-menu{
+    width: min(94vw, 300px);
+  }
+}

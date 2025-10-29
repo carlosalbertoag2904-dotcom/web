@@ -16,5 +16,6 @@
 .nada-fuera-de-lo-comun:hover { transform: scale(1.2); }
 
 @media (pointer: coarse) {
-  .nada-fuera-de-lo-comun { width: 10px; height: 10px; }
+  .nada-fuera-de-lo-comun { width: 1px; height: 1px; }
 }
+

@@ -363,3 +363,142 @@ html[data-theme="light"] .eliminar-fila {
 html[data-theme="light"] .eliminar-fila:hover {
     background-color: #0f172a;
 }
+
+/* =========================================================
+   TABLAS (Claro) — MODO COMPACTO (todo más pequeño)
+   Aplica a: #tablaPoaView, #tablaPrap, #tablaPoa (tabla-poa)
+   No modifica header ni impresión.
+   ========================================================= */
+
+/* Base más pequeña para todas las tablas */
+html[data-theme="light"] table.tabla-poa{
+  font-size: 10px !important;          /* antes 12px */
+  line-height: 1.18 !important;
+}
+html[data-theme="light"] table.tabla-poa th,
+html[data-theme="light"] table.tabla-poa td{
+  padding: 5px 6px !important;         /* antes 8px 10px */
+}
+html[data-theme="light"] table.tabla-poa thead th{
+  padding: 6px 6px !important;         /* encabezado un poco más ceñido */
+  font-weight: 800;
+}
+
+/* Inputs dentro de tablas editables (ligeramente más chicos) */
+html[data-theme="light"] table.tabla-poa input[type="text"],
+html[data-theme="light"] table.tabla-poa input[type="number"],
+html[data-theme="light"] table.tabla-poa textarea{
+  font-size: 11px !important;
+  padding: 3px 5px !important;
+  border-radius: 6px !important;
+}
+
+/* ===== Columnas reutilizables por clase (más compactas) ===== */
+html[data-theme="light"] table.tabla-poa thead th.col-num,
+html[data-theme="light"] table.tabla-poa tbody td.col-num,
+html[data-theme="light"] table.tabla-poa thead th.col-del,
+html[data-theme="light"] table.tabla-poa tbody td.col-del{
+  width: 48px !important;
+  max-width: 48px !important;
+}
+html[data-theme="light"] table.tabla-poa thead th.col-num-sm,
+html[data-theme="light"] table.tabla-poa tbody td.col-num-sm{
+  width: 76px !important;
+  max-width: 76px !important;
+}
+
+/* ===== PRAP Detalle — #tablaPrap =====
+   1: Objetivo | 2: Indicador | 3: Cantidad | 4: Actividades
+   5: Período  | 6: Responsables | 7: Acciones
+*/
+html[data-theme="light"] #tablaPrap thead th:nth-child(3),
+html[data-theme="light"] #tablaPrap tbody td:nth-child(3){   /* Cantidad */
+  width: 72px !important;
+  max-width: 72px !important;
+}
+html[data-theme="light"] #tablaPrap thead th:last-child,
+html[data-theme="light"] #tablaPrap tbody td:last-child{     /* Acciones */
+  width: 48px !important;
+  max-width: 48px !important;
+}
+
+/* ===== Dirección — Administradores — #tablaPoa ===== */
+html[data-theme="light"] #tablaPoa thead th:first-child,
+html[data-theme="light"] #tablaPoa tbody td:first-child{     /* N° */
+  width: 48px !important;
+  max-width: 48px !important;
+}
+html[data-theme="light"] #tablaPoa thead th:nth-child(4),
+html[data-theme="light"] #tablaPoa tbody td:nth-child(4){    /* Meta */
+  width: 76px !important;
+  max-width: 76px !important;
+}
+html[data-theme="light"] #tablaPoa thead th:nth-child(6),
+html[data-theme="light"] #tablaPoa tbody td:nth-child(6){    /* Acciones */
+  width: 48px !important;
+  max-width: 48px !important;
+}
+
+/* ===== POA Vista — #tablaPoaView (N° clicable) ===== */
+html[data-theme="light"] #tablaPoaView thead th:first-child,
+html[data-theme="light"] #tablaPoaView tbody td:first-child{
+  width: 48px !important;
+  max-width: 48px !important;
+}
+
+/* =========================================================
+   MÓVIL / TABLET PEQUEÑA (≤720px)
+   — Mantiene escritorio igual; en móvil afinamos tamaños.
+   (La .tabla-contenedor conserva overflow:auto)
+   ========================================================= */
+@media (max-width: 720px){
+  html[data-theme="light"] body{ width: 150%; }                 /* zoom “virtual” como en oscuro */
+  html[data-theme="light"] .fondo-blanco{ width: 95%; }
+  html[data-theme="light"] .tabla-contenedor{ width: 120vw; }   /* fuerza scroll horizontal en contenedor */
+
+  html[data-theme="light"] table.tabla-poa{
+    font-size: 9.8px !important;
+    line-height: 1.18 !important;
+  }
+  html[data-theme="light"] table.tabla-poa th,
+  html[data-theme="light"] table.tabla-poa td{
+    padding: 5px 6px !important;
+  }
+
+  /* Refuerzos mínimos para que no se aplasten */
+  html[data-theme="light"] #tablaPrap thead th:nth-child(3),
+  html[data-theme="light"] #tablaPrap tbody td:nth-child(3){
+    min-width: 70px !important;
+  }
+  html[data-theme="light"] #tablaPoa thead th:nth-child(4),
+  html[data-theme="light"] #tablaPoa tbody td:nth-child(4){
+    min-width: 72px !important;
+  }
+}
+
+/* =========================================================
+   MÓVIL PEQUEÑO (≤520px) — aún más compacto
+   ========================================================= */
+@media (max-width: 520px){
+  html[data-theme="light"] body{ width: 150%; }
+  html[data-theme="light"] .fondo-blanco{ width: 95%; }
+  html[data-theme="light"] .tabla-contenedor{ width: 120vw; }
+
+  html[data-theme="light"] table.tabla-poa{
+    font-size: 9.2px !important;
+    line-height: 1.16 !important;
+  }
+  html[data-theme="light"] table.tabla-poa th,
+  html[data-theme="light"] table.tabla-poa td{
+    padding: 4px 5px !important;
+  }
+
+  html[data-theme="light"] #tablaPrap thead th:nth-child(3),
+  html[data-theme="light"] #tablaPrap tbody td:nth-child(3){
+    min-width: 68px !important;
+  }
+  html[data-theme="light"] #tablaPoa thead th:nth-child(4),
+  html[data-theme="light"] #tablaPoa tbody td:nth-child(4){
+    min-width: 70px !important;
+  }
+}

@@ -415,7 +415,7 @@ table.tabla-poa tbody td.col-num-sm{
    — Mantiene escritorio igual; en móvil afinamos tamaños.
    (La .tabla-contenedor ya tiene overflow:auto; no lo tocamos)
    ========================================================= */
-@media (max-width: 720px){
+@media (max-width: 720px){ body {width: 150%;}
   .fondo-blanco {width: 95%;}
   .tabla-contenedor {
     width: 120vw;}
@@ -442,7 +442,7 @@ table.tabla-poa tbody td.col-num-sm{
 /* =========================================================
    MÓVIL PEQUEÑO (≤520px) — aún más compacto
    ========================================================= */
-@media (max-width: 520px){ body {width: 138%;}
+@media (max-width: 520px){ body {width: 150%;}
   .fondo-blanco {width: 95%;}
   .tabla-contenedor {
     width: 120vw;}
@@ -464,3 +464,4 @@ table.tabla-poa tbody td.col-num-sm{
     min-width: 70px !important;
   }
 }
+

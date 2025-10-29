@@ -500,3 +500,97 @@ h2 {
   color: #ffffff;
   margin-left: 30px;
 }
+
+/* =========================================================
+   MÓVIL / TABLET PEQUEÑA (≤720px)
+   — Scroll horizontal SOLO en la tabla, proporciones iguales,
+     tipografía y padding un poco mayores para legibilidad.
+   ========================================================= */
+@media (max-width: 720px){
+
+  /* La página no se ensancha; el scroll es del contenedor de la tabla */
+  body{ width: auto !important; overflow-x: hidden; }
+
+  .table-wrap{
+    width: 95%;
+    margin: 0 auto 12px;
+    overflow-x: auto !important;        /* ← scroll horizontal visible */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* “Ancho virtual” suficiente para que haya scroll sin romper proporciones */
+  .table-wrap > table.data{
+    min-width: 1280px;                  /* ajusta si tu tabla tiene más/menos columnas */
+  }
+
+  /* Más legible en móvil (no altera proporciones de columnas) */
+  table.data{
+    font-size: 13px;                    /* +1px respecto a 12px */
+    line-height: 1.35;
+  }
+  table.data th, table.data td{
+    padding: 9px 12px;                  /* +espacio entre textos y números */
+  }
+
+  /* “Cantidad” (col 3) con ancho mínimo para no apretarse */
+  table.data thead th:nth-child(3),
+  table.data tbody td:nth-child(3){
+    min-width: 7.2rem;
+  }
+
+  /* Bloque de porcentajes (si usas 8, 10 y 11) con más aire a la izquierda */
+  table.data thead th:nth-child(8),
+  table.data tbody td:nth-child(8),
+  table.data thead th:nth-child(10),
+  table.data tbody td:nth-child(10),
+  table.data thead th:nth-child(11),
+  table.data tbody td:nth-child(11){
+    min-width: 6.8rem;
+    padding-left: 16px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* =========================================================
+   MÓVIL PEQUEÑO (≤520px)
+   — Un poco más de ancho “virtual” y separación
+   ========================================================= */
+@media (max-width: 520px){
+
+  .table-wrap{
+    width: 95%;
+    margin: 0 auto 12px;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table-wrap > table.data{
+    min-width: 1400px;                  /* más ancho para mejor lectura */
+  }
+
+  table.data{
+    font-size: 13px;                    /* mantenemos tamaño legible */
+    line-height: 1.38;
+  }
+  table.data th, table.data td{
+    padding: 10px 12px;                 /* un pelín más de aire */
+  }
+
+  /* Refuerzo en “Cantidad” */
+  table.data thead th:nth-child(3),
+  table.data tbody td:nth-child(3){
+    min-width: 7.4rem;
+  }
+
+  /* Refuerzo en % */
+  table.data thead th:nth-child(8),
+  table.data tbody td:nth-child(8),
+  table.data thead th:nth-child(10),
+  table.data tbody td:nth-child(10),
+  table.data thead th:nth-child(11),
+  table.data tbody td:nth-child(11){
+    min-width: 7.2rem;
+    padding-left: 18px;
+  }
+}

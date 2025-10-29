@@ -327,3 +327,140 @@ table[id*="Prap"][id*="View"] tbody td:nth-child(3),
 table[id^="tablaPrap"] tbody td:nth-child(3)[data-view]{
   text-align: right;
 }
+
+/* =========================================================
+   TABLAS (Oscuro) — MODO COMPACTO (todo más pequeño)
+   Aplica a: #tablaPoaView, #tablaPrap, #tablaPoa (tabla-poa)
+   No modifica header ni impresión.
+   ========================================================= */
+
+/* Base más pequeña para todas las tablas */
+table.tabla-poa{
+  font-size: 10px !important;          /* antes 12px */
+  line-height: 1.18 !important;
+}
+table.tabla-poa th,
+table.tabla-poa td{
+  padding: 5px 6px !important;         /* antes 8px 10px */
+}
+table.tabla-poa thead th{
+  padding: 6px 6px !important;         /* encabezado un poco más ceñido */
+  font-weight: 800;                    /* respetamos tu negrita */
+}
+
+/* Inputs dentro de tablas editables (ligeramente más chicos) */
+table.tabla-poa input[type="text"],
+table.tabla-poa input[type="number"],
+table.tabla-poa textarea{
+  font-size: 11px !important;
+  padding: 3px 5px !important;
+  border-radius: 6px !important;
+}
+
+/* ===== Columnas reutilizables por clase (más compactas) ===== */
+table.tabla-poa thead th.col-num,
+table.tabla-poa tbody td.col-num,
+table.tabla-poa thead th.col-del,
+table.tabla-poa tbody td.col-del{
+  width: 48px !important;
+  max-width: 48px !important;
+}
+table.tabla-poa thead th.col-num-sm,
+table.tabla-poa tbody td.col-num-sm{
+  width: 76px !important;
+  max-width: 76px !important;
+}
+
+/* ===== PRAP Detalle — #tablaPrap =====
+   1: Objetivo | 2: Indicador | 3: Cantidad | 4: Actividades
+   5: Período  | 6: Responsables | 7: Acciones
+*/
+#tablaPrap thead th:nth-child(3),
+#tablaPrap tbody td:nth-child(3){            /* Cantidad */
+  width: 72px !important;
+  max-width: 72px !important;
+}
+#tablaPrap thead th:last-child,
+#tablaPrap tbody td:last-child{              /* Acciones */
+  width: 48px !important;
+  max-width: 48px !important;
+}
+
+/* ===== Dirección — Administradores — #tablaPoa ===== */
+#tablaPoa thead th:first-child,
+#tablaPoa tbody td:first-child{              /* N° */
+  width: 48px !important;
+  max-width: 48px !important;
+}
+#tablaPoa thead th:nth-child(4),
+#tablaPoa tbody td:nth-child(4){             /* Meta */
+  width: 76px !important;
+  max-width: 76px !important;
+}
+#tablaPoa thead th:nth-child(6),
+#tablaPoa tbody td:nth-child(6){             /* Acciones */
+  width: 48px !important;
+  max-width: 48px !important;
+}
+
+/* ===== POA Vista — #tablaPoaView (N° clicable) ===== */
+#tablaPoaView thead th:first-child,
+#tablaPoaView tbody td:first-child{
+  width: 48px !important;
+  max-width: 48px !important;
+}
+
+/* =========================================================
+   MÓVIL / TABLET PEQUEÑA (≤720px)
+   — Mantiene escritorio igual; en móvil afinamos tamaños.
+   (La .tabla-contenedor ya tiene overflow:auto; no lo tocamos)
+   ========================================================= */
+@media (max-width: 720px){
+  .fondo-blanco {width: 95%;}
+  .tabla-contenedor {
+    width: 120vw;}
+  table.tabla-poa{
+    font-size: 9.8px !important;
+    line-height: 1.18 !important;
+  }
+  table.tabla-poa th,
+  table.tabla-poa td{
+    padding: 5px 6px !important;
+  }
+
+  /* Refuerzos mínimos para que no se aplasten */
+  #tablaPrap thead th:nth-child(3),
+  #tablaPrap tbody td:nth-child(3){
+    min-width: 70px !important;
+  }
+  #tablaPoa thead th:nth-child(4),
+  #tablaPoa tbody td:nth-child(4){
+    min-width: 72px !important;
+  }
+}
+
+/* =========================================================
+   MÓVIL PEQUEÑO (≤520px) — aún más compacto
+   ========================================================= */
+@media (max-width: 520px){ body {width: 138%;}
+  .fondo-blanco {width: 95%;}
+  .tabla-contenedor {
+    width: 120vw;}
+  table.tabla-poa{
+    font-size: 9.2px !important;
+    line-height: 1.16 !important;
+  }
+  table.tabla-poa th,
+  table.tabla-poa td{
+    padding: 4px 5px !important;
+  }
+
+  #tablaPrap thead th:nth-child(3),
+  #tablaPrap tbody td:nth-child(3){
+    min-width: 68px !important;
+  }
+  #tablaPoa thead th:nth-child(4),
+  #tablaPoa tbody td:nth-child(4){
+    min-width: 70px !important;
+  }
+}

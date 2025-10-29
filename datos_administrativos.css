@@ -347,3 +347,178 @@ table.tabla-admin tbody tr:nth-child(even),
   }
   .acciones-hoja{ display:none !important; }
 }
+
+/* =========================================================
+   MÓVIL Y TABLET PEQUEÑA (≤720px)
+   — compactar y forzar scroll horizontal sin tocar escritorio
+   ========================================================= */
+@media (max-width: 720px){
+
+  /* El contenedor ocupa todo el ancho y permite deslizar lateral */
+  .table-scroll{
+    width: 100%;
+    max-width: none;
+    margin: 0 0 12px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Texto y geometría más compactos; ancho mínimo para scroll */
+  table.tabla-admin,
+  #tablaAdmin,
+  #tablaAdminPublic,
+  #tablaUsuarios{
+    font-size: 10px;   /* pequeño a propósito */
+    line-height: 1.2;
+    min-width: 640px;  /* base (se sobreescribe abajo por tabla y en ≤520px) */
+  }
+
+  /* Anchos mínimos por cantidad de columnas */
+  #tablaAdmin{        /* 7 columnas (admin) */
+    min-width: 820px;
+  }
+  #tablaUsuarios{     /* 5 columnas (usuarios) */
+    min-width: 720px;
+  }
+  #tablaAdminPublic{  /* 4 columnas (público) */
+    min-width: 580px;
+  }
+
+  /* Encabezados más pequeños y fijos al hacer scroll vertical */
+  table.tabla-admin thead th,
+  #tablaAdmin thead th,
+  #tablaAdminPublic thead th,
+  #tablaUsuarios thead th{
+    font-size: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
+  /* Celdas con menos padding para ganar espacio */
+  table.tabla-admin th, table.tabla-admin td,
+  #tablaAdmin th, #tablaAdmin td,
+  #tablaAdminPublic th, #tablaAdminPublic td,
+  #tablaUsuarios th, #tablaUsuarios td{
+    padding: 6px 6px;
+  }
+
+  /* Columnas “#” y “Acciones” aún más compactas */
+  #tablaAdmin thead th:nth-child(1),
+  #tablaAdmin tbody td:nth-child(1),
+  #tablaAdmin thead th:nth-child(7),
+  #tablaAdmin tbody td:nth-child(7),
+  #tablaAdminPublic thead th:nth-child(1),
+  #tablaAdminPublic tbody td:nth-child(1),
+  #tablaUsuarios thead th:nth-child(1),
+  #tablaUsuarios tbody td:nth-child(1),
+  #tablaUsuarios thead th:nth-child(5),
+  #tablaUsuarios tbody td:nth-child(5){
+    width: 40px; max-width: 40px; white-space: nowrap; text-align: center;
+  }
+
+  /* “Usuario” un poco más estrecha en este rango */
+  #tablaAdmin thead th:nth-child(5),
+  #tablaAdmin tbody td:nth-child(5),
+  #tablaUsuarios thead th:nth-child(3),
+  #tablaUsuarios tbody td:nth-child(3){
+    width: 128px; max-width: 128px;
+  }
+
+  /* Inputs/textarea más chicos dentro de tablas editables */
+  #tablaAdmin input[type="text"],
+  #tablaAdmin input[type="email"],
+  #tablaAdmin input[type="password"],
+  #tablaAdmin textarea,
+  #tablaUsuarios input[type="text"],
+  #tablaUsuarios input[type="password"],
+  #tablaUsuarios textarea{
+    font-size: 10px;
+    padding: 3px 5px;
+    border-radius: 6px;
+  }
+
+  /* Botón de eliminar compacto */
+  #tablaAdmin .btn-trash,
+  #tablaAdmin .eliminar-fila,
+  #tablaAdmin td:last-child .btn,
+  #tablaAdmin td:last-child button,
+  #tablaUsuarios .btn-trash,
+  #tablaUsuarios .eliminar-fila,
+  #tablaUsuarios td:last-child .btn,
+  #tablaUsuarios td:last-child button{
+    width: 26px; height: 26px; border-radius: 6px;
+  }
+  #tablaAdmin .btn-trash img,
+  #tablaAdmin .eliminar-fila img,
+  #tablaAdmin td:last-child .btn img,
+  #tablaAdmin td:last-child button img,
+  #tablaUsuarios .btn-trash img,
+  #tablaUsuarios .eliminar-fila img,
+  #tablaUsuarios td:last-child .btn img,
+  #tablaUsuarios td:last-child button img{
+    width: 14px; height: 14px;
+  }
+}
+
+/* =========================================================
+   MÓVIL PEQUEÑO (≤520px)
+   — mismas reglas pero con tablas MÁS ANCHAS para mejor lectura
+   ========================================================= */
+@media (max-width: 520px){
+
+  /* Aumenta el ancho base de todas las tablas en móvil pequeño */
+  table.tabla-admin,
+  #tablaAdmin,
+  #tablaAdminPublic,
+  #tablaUsuarios{
+    min-width: 720px;   /* antes 640px en ≤720px */
+  }
+
+  /* Específicos por tabla (más espacio total) */
+  #tablaAdmin{        /* 7 columnas (admin) */
+    min-width: 960px; /* antes 820px */
+  }
+  #tablaUsuarios{     /* 5 columnas (usuarios) */
+    min-width: 840px; /* antes 720px */
+  }
+  #tablaAdminPublic{  /* 4 columnas (público) */
+    min-width: 700px; /* antes 580px */
+  }
+
+  /* “Usuario” un poco más ancha en móvil pequeño */
+  #tablaAdmin thead th:nth-child(5),
+  #tablaAdmin tbody td:nth-child(5),
+  #tablaUsuarios thead th:nth-child(3),
+  #tablaUsuarios tbody td:nth-child(3){
+    width: 140px; max-width: 140px; /* antes 128px */
+  }
+}
+/* =========================================================
+   MÓVIL — hoja y tabla casi a ancho completo de la pantalla
+   (colocar al FINAL del CSS)
+   ========================================================= */
+@media (max-width: 920px){
+  /* Hoja más ancha (margen ~12px por lado) */
+  .sheet{
+    width: calc(140vw - 44px) !important;
+    max-width: none !important;
+    margin: 1px !important;
+  }
+
+  /* El contenedor de la tabla ocupa la hoja completa */
+  .table-scroll{
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    overflow-x: auto;                 /* mantiene scroll lateral si hace falta */
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 720px){
+  /* En pantallas muy chicas, aún más al borde (margen ~8px por lado) */
+  .sheet{
+    width: calc(140vw - 44px) !important;
+  }
+}

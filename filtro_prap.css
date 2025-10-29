@@ -1,7 +1,7 @@
 /* =========================================================
    Filtro PRAP (PÚBLICO) — CSS individual
    - Header/fondo iguales al resto
-   - Tabla estilo oscuro
+   - Tabla estilo oscuro sin barras de scroll visibles
    - Col 4 (Cantidad) y Col 8 (Ver) angostas
    - Botón "Ver progreso" alineado a la izquierda
    ========================================================= */
@@ -54,6 +54,7 @@
 /* -------- Base / Fondo -------- */
 *{ box-sizing: border-box; }
 html, body{ height:100%; }
+html{ overflow-x: hidden; } /* evita barras globales en zoom */
 body{
   margin:0;
   font-family:var(--ff);
@@ -61,7 +62,7 @@ body{
   background: var(--overlay), var(--bg-image) center/cover no-repeat fixed;
 }
 
-/* -------- Header (igual a las otras páginas) -------- */
+/* -------- Header (DEJADO IGUAL QUE ESTABA) -------- */
 header{
   display:flex; align-items:center; justify-content:space-between;
   gap:16px; padding:14px 28px;
@@ -232,13 +233,17 @@ nav{ flex:1 1 auto; display:flex; justify-content:center; }
 .cs-item:hover, .cs-item:focus{ background: rgba(255,255,255,.10); }
 .cs-item[aria-selected="true"]{ background: rgba(255,255,255,.18); }
 
-/* -------- Tabla (90% del ancho de página) -------- */
+/* -------- Tabla (ancho de la tarjeta, sin scrollbars visibles) -------- */
 .tabla-contenedor{
-  width: 90vw;
-  max-width: 1400px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto 6px;
-  overflow: auto;
+  overflow-x: hidden;      /* sin barra horizontal */
+  overflow-y: auto;
 }
+.tabla-contenedor::-webkit-scrollbar{ display:none; } /* oculta barras si aparecen */
+.tabla-contenedor{ -ms-overflow-style:none; scrollbar-width:none; }
+
 table.tabla-poa{
   width: 100%;
   border-collapse: collapse;
@@ -289,11 +294,11 @@ table.tabla-poa tbody tr:nth-child(even){ background: var(--zebra); }
 .link-abrir:hover{ background:#1b1b1b; }
 .link-abrir:active{ transform: translateY(1px); }
 
-/* -------- “Ver progreso” alineado a la izquierda (debajo y alineado con tabla) -------- */
+/* -------- “Ver progreso” alineado a la izquierda -------- */
 #btn_background{
-  width: 90vw; max-width: 1400px;
+  width: 90vw; max-width: 1400px;      /* lo dejo como estaba */
   margin: 14px auto 28px;
-  display: flex; justify-content: flex-start; /* izquierda */
+  display: flex; justify-content: flex-start;
 }
 #btn_1{
   display:inline-flex; align-items:center; justify-content:center;
@@ -310,4 +315,86 @@ table.tabla-poa tbody tr:nth-child(even){ background: var(--zebra); }
 @media (max-width: 900px){
   .filtros-grid{ grid-template-columns: 1fr; align-items: stretch; }
   .acciones{ padding-top: 4px; }
+}
+
+/* =========================================================
+   Filtro PRAP — MÓVIL / TABLET PEQUEÑA (≤720px)
+   (sin barras de scroll; se ajusta con tipografía y anchos %)
+   ========================================================= */
+@media (max-width: 720px){
+
+  .fondo-blanco{
+    width: 90%;
+    max-width: none;
+    margin: 0 auto;
+    padding: 14px;
+  }
+
+  .tabla-contenedor{
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;                 /* no mostrar barra horizontal */
+  }
+
+  table.tabla-poa{
+    width: 100%;
+    font-size: 10px;                    /* más compacto */
+    line-height: 1.2;
+  }
+  table.tabla-poa th, table.tabla-poa td{ padding: 6px 6px; }
+
+  body {width: 150%;}
+
+  /* Reparto porcentual para 8 columnas (suma ~100%) */
+  #tablaFiltro thead th:nth-child(1),
+  #tablaFiltro tbody td:nth-child(1){ width: 13%; }   /* Dirección */
+  #tablaFiltro thead th:nth-child(2),
+  #tablaFiltro tbody td:nth-child(2){ width: 17%; }   /* Objetivo */
+  #tablaFiltro thead th:nth-child(3),
+  #tablaFiltro tbody td:nth-child(3){ width: 14%; }   /* Indicador */
+  #tablaFiltro thead th:nth-child(4),
+  #tablaFiltro tbody td:nth-child(4){ width: 8%; }    /* Cantidad (angosta) */
+  #tablaFiltro thead th:nth-child(5),
+  #tablaFiltro tbody td:nth-child(5){ width: 18%; }   /* Actividades */
+  #tablaFiltro thead th:nth-child(6),
+  #tablaFiltro tbody td:nth-child(6){ width: 12%; }   /* Período */
+  #tablaFiltro thead th:nth-child(7),
+  #tablaFiltro tbody td:nth-child(7){ width: 12%; }   /* Responsables */
+  #tablaFiltro thead th:nth-child(8),
+  #tablaFiltro tbody td:nth-child(8){ width: 6%; }    /* Ver (angosta) */
+
+  /* Encabezado compacto (sin sticky para evitar saltos en zoom) */
+  table.tabla-poa thead th{ font-size: 10px; position: static; }
+
+  /* Filtros en una sola columna y controles compactos */
+  .filtros-grid{ grid-template-columns: 1fr; gap: 10px; }
+  .campo select, .campo input[type="text"]{ font-size: 13px; padding: 9px 12px; }
+
+  /* POP del select: no se sale del contenedor */
+  .cs-pop{
+    left: 0; right: 0;
+    min-width: 100%; max-width: 100%;
+  }
+
+  /* Botón ancho alineado con el contenedor */
+  #btn_background{
+    width: calc(100vw - 24px);
+    max-width: none;
+    margin: 12px auto 24px;
+  }
+}
+
+/* =========================================================
+   Filtro PRAP — MÓVIL PEQUEÑO (≤520px)
+   ========================================================= */
+@media (max-width: 520px){
+  .fondo-blanco{ width: 90%; }
+  #btn_background{ width: calc(100vw - 16px); }
+
+  table.tabla-poa{ font-size: 9px; }
+  table.tabla-poa th, table.tabla-poa td{ padding: 5px 5px; }
+  body {width: 150%;}
+  .link-abrir {width:5% ;
+  font-size: 6px !important;
+  }
 }

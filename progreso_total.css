@@ -208,3 +208,276 @@ table.data tbody td:nth-child(11){ width: 56px; }
 
   .nonprint{ display:none !important; }
 }
+
+/* =========================================================
+   REPORTE / IMPRESIÓN — OVERRIDES MÓVILES
+   - Scroll horizontal SOLO en la tabla
+   - Tipografía y paddings mayores para legibilidad
+   - Separación extra en columnas ABS/% (7–11)
+   - Escritorio: sin cambios
+   ========================================================= */
+
+/* ====== MÓVIL / TABLET PEQUEÑA (≤720px) ====== */
+@media (max-width: 720px){
+
+  /* El scroll horizontal vive en la tabla, no en la página */
+  body{ width:auto !important; overflow-x:hidden; }
+
+  .table-wrap{
+    overflow-x: auto !important;        /* ← scroll horizontal visible */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* “Ancho virtual” amplio para que no se comprima nada
+     (se respeta tu reparto de columnas existente) */
+  .table-wrap > table.data{
+    min-width: 1320px;                   /* ajusta a gusto (1300–1500) */
+  }
+
+  /* Más grande y con más aire en móvil */
+  table.data{
+    font-size: 12px;                     /* ↑ de 11px → 12px */
+    line-height: 1.35;
+  }
+  table.data th, table.data td{
+    padding: 9px 12px;                   /* ↑ más separación visual */
+  }
+
+  /* Evitar saltos del sticky con gestos de zoom/scroll en móvil */
+  table.data thead th{ position: static; }
+
+  /* ======================
+     Cols numéricas 7–11
+     ====================== */
+
+  /* ABS (7 y 9): un poco más anchas, alineadas a la derecha */
+  table.data thead th:nth-child(7),
+  table.data tbody td:nth-child(7),
+  table.data thead th:nth-child(9),
+  table.data tbody td:nth-child(9){
+    min-width: 84px;                     /* antes 72px base */
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* % (8, 10, 11): más aire a la izquierda y mínimo de ancho */
+  table.data thead th:nth-child(8),
+  table.data tbody td:nth-child(8),
+  table.data thead th:nth-child(10),
+  table.data tbody td:nth-child(10),
+  table.data thead th:nth-child(11),
+  table.data tbody td:nth-child(11){
+    min-width: 76px;                     /* antes 56–64px base */
+    padding-left: 16px;                  /* separa texto ↔ números */
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Línea divisoria antes del primer % (col 8) para separar ABS vs % */
+  table.data thead th:nth-child(8),
+  table.data tbody td:nth-child(8){
+    border-left-width: 2px;
+    border-left-style: solid;
+    border-left-color: var(--cell-bd);
+  }
+
+  /* “Cantidad” (3): mínimo para que no se apriete */
+  table.data thead th:nth-child(3),
+  table.data tbody td:nth-child(3){
+    min-width: 66px;                     /* antes 58px */
+  }
+}
+
+/* ====== MÓVIL PEQUEÑO (≤520px) ====== */
+@media (max-width: 520px){
+
+  .table-wrap{
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Aún más ancho “virtual” → mejor lectura con scroll */
+  .table-wrap > table.data{
+    min-width: 1440px;                   /* sube para pantallas muy chicas */
+  }
+
+  table.data{
+    font-size: 12px;                     /* mantenemos tamaño legible */
+    line-height: 1.38;
+  }
+  table.data th, table.data td{
+    padding: 10px 12px;               
+  }
+
+  /* Refuerzo ABS/% */
+  table.data thead th:nth-child(7),
+  table.data tbody td:nth-child(7),
+  table.data thead th:nth-child(9),
+  table.data tbody td:nth-child(9){
+    min-width: 90px;
+  }
+  table.data thead th:nth-child(8),
+  table.data tbody td:nth-child(8),
+  table.data thead th:nth-child(10),
+  table.data tbody td:nth-child(10),
+  table.data thead th:nth-child(11),
+  table.data tbody td:nth-child(11){
+    min-width: 82px;
+    padding-left: 18px;
+  }
+
+  /* “Cantidad” (3) un toque más holgada aún */
+  table.data thead th:nth-child(3),
+  table.data tbody td:nth-child(3){
+    min-width: 70px;
+  }
+}
+
+/* =========================================================
+   TABLA — MODO COMPACTO (todo más pequeño)
+   - Mantiene proporciones/estructura
+   - Reduce font-size, paddings y anchos mínimos
+   - No toca el header ni la impresión
+   ========================================================= */
+
+/* --- Base (escritorio incluido) --- */
+table.data{
+  font-size: 10px !important;        /* antes 11px */
+  line-height: 1.18 !important;      /* más ceñido */
+}
+table.data th, table.data td{
+  padding: 5px 6px !important;       /* antes 7–8px */
+}
+table.data thead th{
+  padding: 6px 6px !important;
+  font-weight: 400;                   /* sin negrita, como tenías */
+}
+
+/* Ajustes puntuales de ancho (pixeles) sin cambiar proporciones % */
+table.data thead th:nth-child(3),
+table.data tbody td:nth-child(3){     /* Cantidad */
+  width: 52px !important;             /* antes 58px */
+}
+table.data thead th:nth-child(7),
+table.data tbody td:nth-child(7),
+table.data thead th:nth-child(9),
+table.data tbody td:nth-child(9){     /* ABS (I / II absolutos) */
+  width: 64px !important;             /* antes 72px */
+}
+table.data thead th:nth-child(8),
+table.data tbody td:nth-child(8),
+table.data thead th:nth-child(10),
+table.data tbody td:nth-child(10){    /* % (I% / II%) */
+  width: 56px !important;             /* antes 64px */
+}
+table.data thead th:nth-child(11),
+table.data tbody td:nth-child(11){    /* Avance total % */
+  width: 50px !important;             /* antes 56px */
+}
+
+/* Separación más sutil para las columnas de % */
+table.data thead th:nth-child(8),
+table.data tbody td:nth-child(8),
+table.data thead th:nth-child(10),
+table.data tbody td:nth-child(10),
+table.data thead th:nth-child(11),
+table.data tbody td:nth-child(11){
+  padding-left: 12px !important;      /* antes 16–18px */
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+/* Línea divisoria más discreta antes del primer % */
+table.data thead th:nth-child(8),
+table.data tbody td:nth-child(8){
+  border-left-width: 1px !important;
+}
+
+/* =========================================================
+   MÓVIL / TABLET PEQUEÑA (≤720px) — compacto + scroll en tabla
+   ========================================================= */
+@media (max-width: 720px){
+
+  .table-wrap{
+    overflow-x: auto !important;      /* scroll horizontal solo en tabla */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table-wrap > table.data{
+    min-width: 1200px !important;     /* antes 1320px */
+  }
+
+  table.data{
+    font-size: 10px !important;       /* ↓ respecto a 12px que pusimos */
+    line-height: 1.2 !important;
+  }
+  table.data th, table.data td{
+    padding: 6px 8px !important;      /* menos aire, sigue legible */
+  }
+
+  /* Refuerzos mínimos para números */
+  table.data thead th:nth-child(7),
+  table.data tbody td:nth-child(7),
+  table.data thead th:nth-child(9),
+  table.data tbody td:nth-child(9){
+    min-width: 72px !important;       /* acorde con el shrink */
+  }
+  table.data thead th:nth-child(8),
+  table.data tbody td:nth-child(8),
+  table.data thead th:nth-child(10),
+  table.data tbody td:nth-child(10),
+  table.data thead th:nth-child(11),
+  table.data tbody td:nth-child(11){
+    min-width: 64px !important;
+    padding-left: 12px !important;
+  }
+
+  table.data thead th:nth-child(3),
+  table.data tbody td:nth-child(3){
+    min-width: 54px !important;
+  }
+}
+
+/* =========================================================
+   MÓVIL PEQUEÑO (≤520px) — aún más pequeño
+   ========================================================= */
+@media (max-width: 520px){
+
+  .table-wrap{
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table-wrap > table.data{
+    min-width: 1280px !important;     /* antes 1440px */
+  }
+
+  table.data{
+    font-size: 9.5px !important;
+    line-height: 1.18 !important;
+  }
+  table.data th, table.data td{
+    padding: 5px 6px !important;
+  }
+
+  /* Números/porcentajes un poco más estrechos */
+  table.data thead th:nth-child(7),
+  table.data tbody td:nth-child(7),
+  table.data thead th:nth-child(9),
+  table.data tbody td:nth-child(9){
+    min-width: 68px !important;
+  }
+  table.data thead th:nth-child(8),
+  table.data tbody td:nth-child(8),
+  table.data thead th:nth-child(10),
+  table.data tbody td:nth-child(10),
+  table.data thead th:nth-child(11),
+  table.data tbody td:nth-child(11){
+    min-width: 60px !important;
+    padding-left: 10px !important;
+  }
+
+  table.data thead th:nth-child(3),
+  table.data tbody td:nth-child(3){
+    min-width: 52px !important;
+  }
+}
